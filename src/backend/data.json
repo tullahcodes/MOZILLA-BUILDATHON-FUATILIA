@@ -3,7 +3,7 @@
     "national_id": "12345678",
     "reference_number": "NGCDF/SIA/2026/001",
     "parent_name": "Mary Akinyi",
-    "password": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+    "password": "472bbe83616e93d3c09a79103ae47d8f71e3d35a966d6e8b22f743218d04171d",
     "is_registered": true,
     "children": [
       {
@@ -48,8 +48,8 @@
     "national_id": "23456789",
     "reference_number": "NGCDF/KIS/2026/002",
     "parent_name": "John Kamau",
-    "password": "",
-    "is_registered": false,
+    "password": "0c08a9536b5dd78713f440acb930872fd69f7a71ad0cf9cdedc9628ddf9ac3d7",
+    "is_registered": true,
     "children": [
       {
         "student_name": "Grace Kamau",
