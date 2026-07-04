@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-API_KEY = "sk-525b8bf884df42fc80b4612b1707d48f"
+API_KEY = os.environ.get('DEEPSEEK_API_KEY')
 
 # Load mock data
 def load_data():
