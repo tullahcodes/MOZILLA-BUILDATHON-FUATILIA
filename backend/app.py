@@ -80,6 +80,47 @@ def login():
     })
 
 
+# ADD CHILD
+@app.route('/add-child', methods=['POST'])
+def add_child():
+    body = request.json
+    national_id = body.get('national_id')
+    reference_number = body.get('reference_number')
+
+    if not national_id or not reference_number:
+        return jsonify({'success': False, 'message': 'Missing National ID or Reference Number.'})
+
+    data = load_data()
+    parent = find_parent(data, national_id)
+
+    if not parent:
+        return jsonify({'success': False, 'message': 'Logged-in parent record not found.'})
+
+    # Find the parent record that owns the reference number
+    target_parent = next((p for p in data if p['reference_number'] == reference_number), None)
+    if not target_parent:
+        return jsonify({'success': False, 'message': 'Reference number not found in database.'})
+
+    # Gather children from target parent
+    new_children_added = []
+    existing_nemis = {c['nemis_number'] for c in parent['children']}
+
+    for child in target_parent['children']:
+        if child['nemis_number'] not in existing_nemis:
+            parent['children'].append(child)
+            new_children_added.append(child['student_name'])
+
+    if not new_children_added:
+        return jsonify({'success': False, 'message': 'All students associated with this reference number are already added.'})
+
+    save_data(data)
+    return jsonify({
+        'success': True,
+        'message': f"Successfully added: {', '.join(new_children_added)}",
+        'children': parent['children']
+    })
+
+
 # TRACK
 @app.route('/track', methods=['POST'])
 def track():

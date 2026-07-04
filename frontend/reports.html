@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fuatilia National Bursary Accountability Reports. Analyze constituency-level allocations, disbursements, anomalies, and clean records.">
+  <title>National Reports — Fuatilia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sticky Top Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        Fuatilia
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li class="active"><a href="reports.html">Reports</a></li>
+        <li><a href="dashboard.html" id="nav-dashboard-link">Dashboard</a></li>
+      </ul>
+      <div class="nav-auth" id="nav-auth-container">
+        <!-- Rendered dynamically by script.js -->
+        <a href="dashboard.html" class="btn btn-secondary" id="nav-login-btn">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>National Bursary Accountability Reports</h1>
+      <p>Tracking how NG-CDF bursary funds move from government allocation to student receipt.</p>
+    </div>
+  </header>
+
+  <!-- Main Content Section -->
+  <main class="section">
+    <div class="container">
+      
+      <!-- Summary Metrics Row -->
+      <div class="metrics-row">
+        <!-- Card 1 -->
+        <div class="metric-card">
+          <span class="metric-label">Total Allocated Nationally</span>
+          <span class="metric-value">Ksh 2.4 Billion</span>
+        </div>
+        <!-- Card 2 -->
+        <div class="metric-card">
+          <span class="metric-label">Total Disbursed</span>
+          <span class="metric-value">Ksh 1.1 Billion</span>
+        </div>
+        <!-- Card 3 -->
+        <div class="metric-card">
+          <span class="metric-label">Constituencies with Anomalies</span>
+          <span class="metric-value" style="color: var(--error-color);">47</span>
+        </div>
+        <!-- Card 4 -->
+        <div class="metric-card">
+          <span class="metric-label">Students Still Waiting</span>
+          <span class="metric-value" style="color: var(--warning-color);">89,000</span>
+        </div>
+      </div>
+
+      <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;">Constituency Performance Audit</h2>
+      
+      <!-- Constituency Table -->
+      <div class="table-container">
+        <table id="reports-table">
+          <thead>
+            <tr>
+              <th data-column="constituency" data-type="text">Constituency</th>
+              <th data-column="county" data-type="text">County</th>
+              <th data-column="allocated" data-type="number">Allocated (Ksh)</th>
+              <th data-column="disbursed" data-type="number">Disbursed (Ksh)</th>
+              <th data-column="reached" data-type="percentage">% Reached</th>
+              <th data-column="status" data-type="text">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Siaya -->
+            <tr class="row-anomaly">
+              <td data-value="Siaya">Siaya</td>
+              <td data-value="Siaya">Siaya</td>
+              <td data-value="4200000">4,200,000</td>
+              <td data-value="1100000">1,100,000</td>
+              <td data-value="26">26%</td>
+              <td data-value="Anomaly"><span class="badge badge-danger">⚠ Anomaly</span></td>
+            </tr>
+            <!-- Kisumu Central -->
+            <tr class="row-clean">
+              <td data-value="Kisumu Central">Kisumu Central</td>
+              <td data-value="Kisumu">Kisumu</td>
+              <td data-value="3800000">3,800,000</td>
+              <td data-value="3610000">3,610,000</td>
+              <td data-value="95">95%</td>
+              <td data-value="Clean"><span class="badge badge-success">✓ Clean</span></td>
+            </tr>
+            <!-- Nakuru East -->
+            <tr class="row-anomaly">
+              <td data-value="Nakuru East">Nakuru East</td>
+              <td data-value="Nakuru">Nakuru</td>
+              <td data-value="5100000">5,100,000</td>
+              <td data-value="2295000">2,295,000</td>
+              <td data-value="45">45%</td>
+              <td data-value="Anomaly"><span class="badge badge-danger">⚠ Anomaly</span></td>
+            </tr>
+            <!-- Westlands -->
+            <tr class="row-clean">
+              <td data-value="Westlands">Westlands</td>
+              <td data-value="Nairobi">Nairobi</td>
+              <td data-value="6200000">6,200,000</td>
+              <td data-value="5890000">5,890,000</td>
+              <td data-value="95">95%</td>
+              <td data-value="Clean"><span class="badge badge-success">✓ Clean</span></td>
+            </tr>
+            <!-- Mathare -->
+            <tr class="row-anomaly">
+              <td data-value="Mathare">Mathare</td>
+              <td data-value="Nairobi">Nairobi</td>
+              <td data-value="3100000">3,100,000</td>
+              <td data-value="620000">620,000</td>
+              <td data-value="20">20%</td>
+              <td data-value="Anomaly"><span class="badge badge-danger">⚠ Anomaly</span></td>
+            </tr>
+            <!-- Garissa Township -->
+            <tr class="row-clean">
+              <td data-value="Garissa Township">Garissa Township</td>
+              <td data-value="Garissa">Garissa</td>
+              <td data-value="4800000">4,800,000</td>
+              <td data-value="4560000">4,560,000</td>
+              <td data-value="95">95%</td>
+              <td data-value="Clean"><span class="badge badge-success">✓ Clean</span></td>
+            </tr>
+            <!-- Turkana Central -->
+            <tr class="row-anomaly">
+              <td data-value="Turkana Central">Turkana Central</td>
+              <td data-value="Turkana">Turkana</td>
+              <td data-value="3600000">3,600,000</td>
+              <td data-value="900000">900,000</td>
+              <td data-value="25">25%</td>
+              <td data-value="Anomaly"><span class="badge badge-danger">⚠ Anomaly</span></td>
+            </tr>
+            <!-- Kikuyu -->
+            <tr class="row-clean">
+              <td data-value="Kikuyu">Kikuyu</td>
+              <td data-value="Kiambu">Kiambu</td>
+              <td data-value="5500000">5,500,000</td>
+              <td data-value="5225000">5,225,000</td>
+              <td data-value="95">95%</td>
+              <td data-value="Clean"><span class="badge badge-success">✓ Clean</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Data Disclaimer -->
+      <div class="disclaimer">
+        <strong>Data Disclaimer:</strong> Data shown is from the NG-CDF Auditor General Performance Audit 2025 and is used for demonstration purposes. In production, this data would be updated in real time from official government sources.
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Fuatilia is a civic tech tool built for government accountability. Built at the Mozilla Foundation × KamiLimu Democracy and AI Hackathon, July 4 2026.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fuatilia Dashboard — Track your child's NG-CDF bursary status, detect anomalies, and manage your profile.">
+  <title>Dashboard — Fuatilia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sticky Top Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Fuatilia</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li class="active"><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="nav-auth" id="nav-auth-container">
+        <!-- Rendered by script.js -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       AUTH MODAL (shown when user is not logged in)
+       ============================================= -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-card">
+      <!-- Modal Tabs -->
+      <div class="modal-tabs">
+        <button class="modal-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">Login</button>
+        <button class="modal-tab-btn" id="tab-register-btn" onclick="switchAuthTab('register')">Register</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- -------------------- -->
+        <!-- LOGIN TAB            -->
+        <!-- -------------------- -->
+        <div class="modal-view active" id="modal-login">
+          <h2 style="font-size:1.4rem; margin-bottom: 20px;">Welcome Back</h2>
+          
+          <!-- Login Error Alert (hidden initially) -->
+          <div class="alert alert-error" id="login-error" style="display:none;"></div>
+          <!-- Login Success Alert (hidden initially) -->
+          <div class="alert alert-success" id="login-success" style="display:none;"></div>
+
+          <div class="form-group">
+            <label for="login-national-id">National ID</label>
+            <input type="text" id="login-national-id" class="form-control" placeholder="Enter your National ID" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" class="form-control" placeholder="Enter your password">
+          </div>
+          <button class="btn btn-primary" style="width:100%;" id="login-submit-btn" onclick="handleLogin()">
+            Login
+          </button>
+          <a href="#" class="form-link" onclick="switchAuthTab('register'); return false;">New user? Register here</a>
+        </div>
+
+        <!-- -------------------- -->
+        <!-- REGISTER TAB         -->
+        <!-- -------------------- -->
+        <div class="modal-view" id="modal-register">
+          <h2 style="font-size:1.4rem; margin-bottom: 20px;">Create Account</h2>
+
+          <!-- Register Error Alert (hidden initially) -->
+          <div class="alert alert-error" id="register-error" style="display:none;"></div>
+          <!-- Register Success Alert (hidden initially) -->
+          <div class="alert alert-success" id="register-success" style="display:none;"></div>
+
+          <div class="form-group">
+            <label for="reg-name">Full Name</label>
+            <input type="text" id="reg-name" class="form-control" placeholder="e.g. Mary Akinyi">
+          </div>
+          <div class="form-group">
+            <label for="reg-national-id">National ID</label>
+            <input type="text" id="reg-national-id" class="form-control" placeholder="Enter your National ID" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="reg-reference">Reference Number</label>
+            <input type="text" id="reg-reference" class="form-control" placeholder="e.g. NGCDF/SIA/2026/001">
+          </div>
+          <div class="form-group">
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" class="form-control" placeholder="Choose a strong password">
+          </div>
+          <div class="form-group">
+            <label for="reg-confirm-password">Confirm Password</label>
+            <input type="password" id="reg-confirm-password" class="form-control" placeholder="Repeat password">
+          </div>
+          <button class="btn btn-primary" style="width:100%;" id="register-submit-btn" onclick="handleRegister()">
+            Register
+          </button>
+          <a href="#" class="form-link" onclick="switchAuthTab('login'); return false;">Already have an account? Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       DASHBOARD (shown when user IS logged in)
+       ============================================= -->
+  <div class="dashboard-container" id="dashboard-container" style="display:none;">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <!-- Parent Profile Summary -->
+        <div class="profile-summary">
+          <h4 id="sidebar-parent-name">Loading...</h4>
+          <p id="sidebar-national-id" style="font-size:0.8rem; font-family: monospace;">ID: —</p>
+        </div>
+
+        <!-- Sidebar Navigation -->
+        <ul class="sidebar-nav">
+          <li class="active" id="sidebar-track-item">
+            <a href="#" onclick="switchDashboardView('track'); return false;">
+              📋 Track
+            </a>
+          </li>
+          <li id="sidebar-profile-item">
+            <a href="#" onclick="switchDashboardView('profile'); return false;">
+              👤 Profile
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Sidebar Logout Button -->
+      <div>
+        <button class="btn btn-outline-danger" style="width:100%;" onclick="handleLogout()">
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- ============================
+           TRACK VIEW (default)
+           ============================ -->
+      <div class="dashboard-view active" id="view-track">
+        <h1 style="font-size:1.8rem; font-weight:700; margin-bottom:8px;">Bursary Tracker</h1>
+        <p style="color:var(--text-muted); margin-bottom:30px;">Real-time status of your children's NG-CDF bursary applications.</p>
+        
+        <!-- Child cards rendered here by script.js -->
+        <div id="children-cards-container">
+          <p style="color:var(--text-muted);">Loading bursary data...</p>
+        </div>
+      </div>
+
+      <!-- ============================
+           PROFILE VIEW
+           ============================ -->
+      <div class="dashboard-view" id="view-profile">
+        <h1 style="font-size:1.8rem; font-weight:700; margin-bottom:8px;">My Profile</h1>
+        <p style="color:var(--text-muted); margin-bottom:30px;">Manage your account details and linked children.</p>
+
+        <div class="profile-grid">
+          
+          <!-- Left column: Parent Details + Change Password -->
+          <div style="display:flex; flex-direction:column; gap:30px;">
+
+            <!-- Parent Details Card -->
+            <div class="profile-card">
+              <h3>📇 Parent Details</h3>
+              <div id="profile-details-container">
+                <!-- Rendered by script.js -->
+              </div>
+            </div>
+
+            <!-- Change Password Card -->
+            <div class="profile-card">
+              <h3>🔒 Change Password</h3>
+              <div class="alert alert-error" id="pwd-error" style="display:none;"></div>
+              <div class="alert alert-success" id="pwd-success" style="display:none;"></div>
+              <div class="form-group">
+                <label for="pwd-current">Current Password</label>
+                <input type="password" id="pwd-current" class="form-control" placeholder="Your current password">
+              </div>
+              <div class="form-group">
+                <label for="pwd-new">New Password</label>
+                <input type="password" id="pwd-new" class="form-control" placeholder="New password (min. 6 characters)">
+              </div>
+              <div class="form-group">
+                <label for="pwd-confirm">Confirm New Password</label>
+                <input type="password" id="pwd-confirm" class="form-control" placeholder="Repeat new password">
+              </div>
+              <button class="btn btn-primary" id="pwd-save-btn" onclick="handleChangePassword()">
+                Save Password
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Right column: Children list + Add Child -->
+          <div style="display:flex; flex-direction:column; gap:30px;">
+
+            <!-- Children List Card -->
+            <div class="profile-card">
+              <h3>🎓 Linked Children</h3>
+              <div id="profile-children-container">
+                <!-- Rendered by script.js -->
+              </div>
+            </div>
+
+            <!-- Add Child Card -->
+            <div class="profile-card">
+              <h3>➕ Add Another Child</h3>
+              <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:20px;">
+                Link additional children using their NG-CDF application reference number.
+              </p>
+              <div class="alert alert-error" id="add-child-error" style="display:none;"></div>
+              <div class="alert alert-success" id="add-child-success" style="display:none;"></div>
+              <div class="form-group">
+                <label for="add-child-reference">Reference Number</label>
+                <input type="text" id="add-child-reference" class="form-control" placeholder="e.g. NGCDF/KIS/2026/002">
+              </div>
+              <button class="btn btn-primary" id="add-child-btn" onclick="handleAddChild()">
+                Add Child
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <!-- END profile view -->
+
+    </main>
+  </div>
+  <!-- END dashboard container -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Fuatilia is a civic tech tool built for government accountability. Built at the Mozilla Foundation × KamiLimu Democracy and AI Hackathon, July 4 2026.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
