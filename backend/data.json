@@ -1,0 +1,101 @@
+[
+  {
+    "national_id": "12345678",
+    "reference_number": "NGCDF/SIA/2026/001",
+    "parent_name": "Mary Akinyi",
+    "password": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+    "is_registered": true,
+    "children": [
+      {
+        "student_name": "Akinyi Atieno",
+        "nemis_number": "A1234567",
+        "school": "Siaya Girls Secondary School",
+        "constituency": "Siaya",
+        "applied_amount": 8000,
+        "approved_amount": 8000,
+        "disbursed_amount": 0,
+        "application_date": "2026-01-15",
+        "approval_date": "2026-03-15",
+        "disbursement_date": null,
+        "school_confirmation_date": null,
+        "stage": "disbursement",
+        "days_since_approval": 112,
+        "constituency_avg_days": 21,
+        "anomaly": true,
+        "anomaly_type": "delayed_disbursement"
+      },
+      {
+        "student_name": "Ochieng Atieno",
+        "nemis_number": "A7654321",
+        "school": "Siaya Boys Secondary School",
+        "constituency": "Siaya",
+        "applied_amount": 6000,
+        "approved_amount": 6000,
+        "disbursed_amount": 6000,
+        "application_date": "2026-01-15",
+        "approval_date": "2026-03-15",
+        "disbursement_date": "2026-04-10",
+        "school_confirmation_date": "2026-04-12",
+        "stage": "complete",
+        "days_since_approval": 26,
+        "constituency_avg_days": 21,
+        "anomaly": false,
+        "anomaly_type": null
+      }
+    ]
+  },
+  {
+    "national_id": "23456789",
+    "reference_number": "NGCDF/KIS/2026/002",
+    "parent_name": "John Kamau",
+    "password": "",
+    "is_registered": false,
+    "children": [
+      {
+        "student_name": "Grace Kamau",
+        "nemis_number": "B1234567",
+        "school": "Kisumu Day Secondary School",
+        "constituency": "Kisumu Central",
+        "applied_amount": 10000,
+        "approved_amount": 10000,
+        "disbursed_amount": 0,
+        "application_date": "2026-01-10",
+        "approval_date": null,
+        "disbursement_date": null,
+        "school_confirmation_date": null,
+        "stage": "verification",
+        "days_since_approval": null,
+        "constituency_avg_days": 18,
+        "anomaly": false,
+        "anomaly_type": null
+      }
+    ]
+  },
+  {
+    "national_id": "34567890",
+    "reference_number": "NGCDF/NAK/2026/003",
+    "parent_name": "Susan Wanjiru",
+    "password": "",
+    "is_registered": false,
+    "children": [
+      {
+        "student_name": "Brian Wanjiru",
+        "nemis_number": "C1234567",
+        "school": "Nakuru High School",
+        "constituency": "Nakuru East",
+        "applied_amount": 12000,
+        "approved_amount": 9000,
+        "disbursed_amount": 0,
+        "application_date": "2026-01-12",
+        "approval_date": "2026-03-20",
+        "disbursement_date": null,
+        "school_confirmation_date": null,
+        "stage": "allocation",
+        "days_since_approval": 76,
+        "constituency_avg_days": 18,
+        "anomaly": true,
+        "anomaly_type": "amount_mismatch"
+      }
+    ]
+  }
+]
